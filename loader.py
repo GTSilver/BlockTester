@@ -1,9 +1,11 @@
+import os
 import json
-import pandas
+import pandas as pd
 
 
 class Config:
     filename_separator = ''
+    input_directory_path = ''
 
     def __init__(self, config_path: str):
         def read_json_attr(config_path_: str) -> {}:
@@ -27,4 +29,14 @@ class Config:
         fill_class(json_attr, class_attr)
 
 
-Config('config.json')
+def load_block(cfg: Config) -> [pd.DataFrame]:
+    path = cfg.input_directory_path
+    csv_list = []
+    for root, dirs, files in os.walk(path):
+        for f in files:
+            data_frame = pd.read_csv(path + "\\" + f, sep=';')
+            data_frame = data_frame.set_index("Pass")
+            data_frame = data_frame.sort_index()
+            csv_list.append(data_frame)
+
+    return csv_list
