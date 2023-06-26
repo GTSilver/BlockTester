@@ -1,3 +1,4 @@
 {
-    "file_separator": "-"
+    "filename_separator": ".",
+    "input_directory_path": "input"
 }
