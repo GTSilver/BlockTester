@@ -1,4 +1,4 @@
 {
-    "filename_separator": ".",
-    "input_directory_path": "input"
+    "input_directory_path": "input",
+    "last_column_separator_name": "Trades"
 }
