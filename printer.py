@@ -7,7 +7,7 @@ def print_features_important(setting_dataframe: pd.DataFrame, result_dataframe: 
     model = LinearRegression()
     model.fit(setting_dataframe, result_dataframe)
     coef = model.coef_[0]
-    features = list(zip(np.round(abs(coef) / sum(coef) * 100, 2), setting_columns))
+    features = list(zip(np.round(abs(coef) / sum(abs(coef)) * 100, 2), setting_columns))
     features.sort(reverse=True)
     print('Top features important:')
     for k, v in features:
