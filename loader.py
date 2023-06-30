@@ -6,6 +6,7 @@ import pandas as pd
 class Config:
     last_column_separator_name = ''
     input_directory_path = ''
+    target_column_parameter = ''
 
     def __init__(self, config_path: str):
         def read_json_attr(config_path_: str) -> {}:
@@ -32,12 +33,17 @@ class Config:
 def load_dataframe_list(cfg: Config) -> [pd.DataFrame]:
     path = cfg.input_directory_path
     csv_list = []
-    for root, dirs, files in os.walk(path):
-        for f in files:
-            data_frame = pd.read_csv(path + "\\" + f, sep=';')
-            data_frame = data_frame.set_index("Pass")
-            data_frame = data_frame.sort_index()
-            data_frame = data_frame.fillna(0)
-            csv_list.append(data_frame)
-
+    files = get_filelist(cfg)
+    for f in files:
+        dataframe = pd.read_csv(path + "\\" + f, sep=';').\
+                     set_index("Pass").\
+                     sort_index().\
+                     fillna(0)
+        csv_list.append(dataframe)
     return csv_list
+
+
+def get_filelist(cfg: Config) -> [str]:
+    for root, dirs, files in os.walk(cfg.input_directory_path):
+        ...
+    return files

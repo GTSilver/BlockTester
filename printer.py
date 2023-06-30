@@ -12,3 +12,4 @@ def print_features_important(setting_dataframe: pd.DataFrame, result_dataframe: 
     print('Top features important:')
     for k, v in features:
         print('\t', k, v, sep='\t')
+    print()
