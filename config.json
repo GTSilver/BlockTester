@@ -1,4 +1,5 @@
 {
     "input_directory_path": "input",
-    "last_column_separator_name": "Trades"
+    "last_column_separator_name": "Trades",
+    "target_column_parameter": "Result"
 }
