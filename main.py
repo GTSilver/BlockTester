@@ -1,4 +1,3 @@
-from loader import *
 from printer import *
 from dataframes_collector import *
 from analyser import *
@@ -14,5 +13,6 @@ setting_dataframe = dataframes_list_concatinate_vertical(setting_columns, datafr
 print_features_important(setting_dataframe, result_dataframe, setting_columns)
 
 main_dataframe = dataframes_list_concatinate_horizontal(cfg.target_column_parameter, dataframe_list)
+main_dataframe.columns = [x[:5] for x in get_filelist(cfg)]
 
-create_report(cfg, main_dataframe)
+create_report(main_dataframe).to_csv('output.csv', sep='\t')
