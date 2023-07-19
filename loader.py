@@ -35,7 +35,7 @@ def load_dataframe_list(cfg: Config) -> [pd.DataFrame]:
     csv_list = []
     files = get_filelist(cfg)
     for f in files:
-        dataframe = pd.read_csv(path + "\\" + f, sep=';').\
+        dataframe = pd.read_csv(path + "\\" + f, sep=';', decimal=',').\
                      set_index("Pass").\
                      sort_index().\
                      fillna(0)

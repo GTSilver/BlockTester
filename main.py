@@ -14,5 +14,7 @@ print_features_important(setting_dataframe, result_dataframe, setting_columns)
 
 main_dataframe = dataframes_list_concatinate_horizontal(cfg.target_column_parameter, dataframe_list)
 main_dataframe.columns = [x[:5] for x in get_filelist(cfg)]
-
-create_report(main_dataframe).to_csv('output.csv', sep='\t')
+main_dataframe.to_csv('output_table.csv', sep='\t', decimal=',')
+main_dataframe = create_report(main_dataframe, 20)
+print(main_dataframe)
+main_dataframe.to_csv('output_result.csv', sep='\t', decimal=',')
